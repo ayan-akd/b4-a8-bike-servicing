@@ -26,12 +26,9 @@ app.get('/', (req: Request, res: Response) => {
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(httpStatus.NOT_FOUND).json({
         success: false,
-        statusCode: httpStatus.NOT_FOUND,
+        status: httpStatus.NOT_FOUND,
         message: "API NOT FOUND!",
-        error: {
-            path: req.originalUrl,
-            message: "Your requested path is not found!"
-        }
+        stack: null,
     })
 })
 

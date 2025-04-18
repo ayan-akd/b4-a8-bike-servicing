@@ -8,8 +8,9 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
+    "postinstall": "prisma generate",
     "migrate": "bun x prisma migrate dev",
-    "build": "bun run tsc",
+    "build": "tsc",
     "dev": "tsx watch src/server.ts",
     "prod": "NODE_ENV=production node ./dist/server.js",
     "lint": "eslint src --ext .ts",
