@@ -30,6 +30,16 @@ const getSingleServiceFromDB = async (id: string) => {
 };
 
 const updateServiceInDB = async (id: string, payload: any) => {
+  const isExist = await prisma.serviceRecord.findUnique({
+    where: {
+      serviceId: id,
+    },
+  });
+
+  if (!isExist) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Service record not found');
+  }
+
   const result = await prisma.serviceRecord.update({
     where: {
       serviceId: id,

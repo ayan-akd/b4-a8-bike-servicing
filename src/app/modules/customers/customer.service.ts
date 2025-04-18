@@ -27,6 +27,17 @@ const createCustomerIntoDB = async (data: any) => {
 };
 
 const updateCustomerIntoDB = async (id: string, data: any) => {
+
+  const isExist = await prisma.customer.findUnique({
+    where: {
+      customerId: id,
+    },
+  });
+
+  if (!isExist) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Customer not found');
+  }
+
   const result = await prisma.customer.update({
     where: {
       customerId: id,
@@ -37,6 +48,16 @@ const updateCustomerIntoDB = async (id: string, data: any) => {
 };
 
 const deleteCustomerFromDB = async (id: string) => {
+  const isExist = await prisma.customer.findUnique({
+    where: {
+      customerId: id,
+    },
+  });
+
+  if (!isExist) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Customer not found');
+  }
+  
   const result = await prisma.customer.delete({
     where: {
       customerId: id,
