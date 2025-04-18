@@ -1,0 +1,32 @@
+{
+  "name": "assignment-8",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "migrate": "bun x prisma migrate dev --skip-generate",
+    "build": "bun run tsc",
+    "dev": "tsx watch src/server.ts",
+    "prod": "node ./dist/server.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.24.0",
+    "@prisma/client": "^6.6.0",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.14.1",
+    "cors": "^2.8.5",
+    "eslint": "^9.24.0",
+    "express": "^5.1.0",
+    "http-status": "^2.1.0",
+    "prisma": "^6.6.0",
+    "tsx": "^4.19.3",
+    "typescript-eslint": "^8.30.1"
+  }
+}
