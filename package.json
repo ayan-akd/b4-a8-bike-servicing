@@ -11,7 +11,7 @@
     "migrate": "bun x prisma migrate dev",
     "build": "bun run tsc",
     "dev": "tsx watch src/server.ts",
-    "prod": "node ./dist/server.js",
+    "prod": "NODE_ENV=production node ./dist/server.js",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --fix"
   },
