@@ -7,19 +7,15 @@ import httpStatus from 'http-status';
 import { Prisma } from '@prisma/client';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  //setting default values
   let statusCode = 500;
   let message = 'Something went wrong!';
 
-  // custom error here
   if (err instanceof AppError) {
     statusCode = err?.statusCode;
     message = err.message;
   }
 
-  // default error here
   else if (err instanceof Error) {
-    // prisma  errors here
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       switch (err.code) {
         case 'P2002':
@@ -31,7 +27,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
         case 'P2003':
           statusCode = httpStatus.BAD_REQUEST;
-          message = `Invalid relation reference. Related record for ${err.meta?.field_name || 'a field'} does not exist.`;
+          message = `Record for ${err.meta?.field_name || 'a field'} does not exist.`;
           break;
 
         case 'P2000':
@@ -83,7 +79,6 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     message = 'Invalid JSON payload passed.';
   }
 
-  //ultimate return
   res.status(statusCode).json({
     success: false,
     status: statusCode,
