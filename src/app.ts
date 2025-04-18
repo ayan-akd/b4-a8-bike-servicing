@@ -4,6 +4,7 @@ import httpStatus, { status } from 'http-status';
 import { CustomerRoutes } from './app/modules/customers/customer.route';
 import globalErrorHandler from './middlewares/globalErrorhandler';
 import { BikeRoutes } from './app/modules/bikes/bike.route';
+import { ServiceRoutes } from './app/modules/services/services.route';
 
 const app: Application = express();
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/customers', CustomerRoutes);
 app.use('/api/bikes', BikeRoutes);
+app.use('/api/services', ServiceRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.send({
