@@ -8,7 +8,7 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "migrate": "bun x prisma migrate dev --skip-generate",
+    "migrate": "bun x prisma migrate dev",
     "build": "bun run tsc",
     "dev": "tsx watch src/server.ts",
     "prod": "node ./dist/server.js",
